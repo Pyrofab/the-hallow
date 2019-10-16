@@ -156,15 +156,19 @@ void main()
     float sceneDepth = texture2D(DepthSampler, viewportCoord).x;
     vec3 pixelPosition = CalcEyeFromWindow(sceneDepth).xyz + CameraPosition;
 
-    float pct = distance(pixelPosition, Center);
+	vec3 rayPath = pixelPosition - Center;
+	vec3 step = normalize(rayPath);
+    float len = length(rayPath);
+	vec3 ray = Center;
+	float fog = 0;
 
-	float noise = snoise((pixelPosition + STime*0.5) * 0.1) * 0.5 + 0.5;	// [-1, 1] -> [0, 1]
-    float inside = smoothstep(0, Radius * noise, pct);
+	for (int i = 0; i < len && fog < 1; i++) {
+		ray += step;
+		fog += snoise((ray + STime*0.5) * 0.1) * 0.05 + 0.05;	// [-1, 1] -> [0, 0.1]
+	}
 
 	vec3 color = texture2D(DiffuseSampler, texCoord).rgb;
-
-    // Drawing the circle
-    color = mix(color, vec3(0.7, 0.5, 0.8), inside);
+	color = mix(color, vec3(0.7, 0.5, 0.8), fog);
 
     gl_FragColor = vec4(color, 1.0);
 }
