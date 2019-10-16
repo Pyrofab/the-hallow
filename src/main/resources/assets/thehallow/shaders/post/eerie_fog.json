@@ -1,0 +1,17 @@
+{
+	"targets": [
+		"swap"
+	],
+	"passes": [
+		{
+			"name": "spookytime:eerie_fog",
+			"intarget": "minecraft:main",
+			"outtarget": "swap"
+		},
+		{
+			"name": "blit",
+			"intarget": "swap",
+			"outtarget": "minecraft:main"
+		}
+	]
+}

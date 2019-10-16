@@ -83,9 +83,11 @@ dependencies {
 	modImplementation "io.github.cottonmc:Jankson-Fabric:2.0.0+j1.2.0"
 	include "io.github.cottonmc:Jankson-Fabric:2.0.0+j1.2.0"
 	
-	modImplementation ("me.shedaniel:RoughlyEnoughItems:${project.rei_version}") { exclude(module: "ModMenu") }
-	
+	modImplementation ("me.shedaniel:RoughlyEnoughItems:${project.rei_version}") { exclude(module: "ModMenu") }	
+
 	modImplementation "io.github.cottonmc:LibCD:${project.libcd_version}"
+
+	modImplementation ("com.github.Ladysnake:Satin:${satin_version}")
 }
 
 processResources {

@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 
 import net.minecraft.resource.ResourceType;
 
+import com.fabriccommunity.spookytime.client.shader.EerieFogFx;
 import com.fabriccommunity.thehallow.client.FluidResourceLoader;
 import com.fabriccommunity.thehallow.client.HallowedBlockEntityRenderers;
 import com.fabriccommunity.thehallow.client.HallowedClientNetworking;
@@ -20,6 +21,7 @@ public class TheHallowClient implements ClientModInitializer {
 		HallowedRenderLayers.init();
 		HallowedClientNetworking.init();
 		HallowedColors.init();
+		EerieFogFx.INSTANCE.init();
 
 		ResourceManagerHelper.get(ResourceType.CLIENT_RESOURCES).registerReloadListener(new FluidResourceLoader());
 	}
